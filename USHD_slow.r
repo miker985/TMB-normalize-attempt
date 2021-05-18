@@ -77,7 +77,7 @@ config(tape.parallel = 0, DLL = "USHD_slow")
 cat("\n\n***** Make objective function\n"); flush.console()
 obj <- MakeADFun(tmb_data, tmb_par, random = c("B", paste0("re", 1:1)), DLL = "USHD_slow", map = map)
 
-saveRDS(obj$report(),  file = paste0("outputs/model_fit_OPT_1_", sex, ".rds"))
+saveRDS(obj$report(),  file = paste0("outputs/slow_model_fit_OPT_1_", sex, ".rds"))
 
 # optimize objective function
 cat("\n\n***** Optimize objective function\n"); flush.console()
@@ -89,12 +89,12 @@ nlminb(obj$par, obj$fn, obj$gr)
 # get standard errors
 cat("\n\n***** Extract standard errors\n"); flush.console()
 se_time <- proc.time()
-saveRDS(obj$report(),  file = paste0("outputs/model_fit_race_test_OPT_", sex, ".rds")) # temporarily save this so that we can see the covariance matrix
+saveRDS(obj$report(),  file = paste0("outputs/slow_model_fit_race_test_OPT_", sex, ".rds")) # temporarily save this so that we can see the covariance matrix
 
 out <- sdreport(obj, getJointPrecision = T)
 (se_time <- proc.time() - se_time)
 
 # save model output
 cat("\n\n***** Save model output\n"); flush.console()
-saveRDS(out, file = paste0("outputs/model_fit_race_test_", sex, ".rds"))
-saveRDS(rbind(se_time, opt_time), file = paste0("outputs/model_fit_time_race_test_", sex, ".rds"))
+saveRDS(out, file = paste0("outputs/slow_model_fit_race_test_", sex, ".rds"))
+saveRDS(rbind(se_time, opt_time), file = paste0("outputs/slow_model_fit_time_race_test_", sex, ".rds"))
