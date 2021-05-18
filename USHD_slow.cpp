@@ -3,9 +3,9 @@
 #include <TMB.hpp>
 using namespace density;
 using Eigen::SparseMatrix;
-#include "lcar_strmat.hpp"
-#include "prior_param_struct.hpp"
-#include "prior_penalty.hpp"
+#include "hpp/lcar_strmat.hpp"
+#include "hpp/prior_param_struct.hpp"
+#include "hpp/prior_penalty.hpp"
 
 // Objective function
 template<class Type>
